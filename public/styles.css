@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f0f0f;
+  color: #f1f1f1;
+}
+
+.topbar {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #272727;
+  background: #181818;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.player-panel,
+.upload-card,
+.video-list-card {
+  background: #181818;
+  border: 1px solid #2f2f2f;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.empty-text {
+  color: #a9a9a9;
+}
+
+.player-panel video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+  max-height: 500px;
+}
+
+.player-title {
+  margin: 0.8rem 0 0.5rem;
+}
+
+.player-meta {
+  color: #b0b0b0;
+  margin: 0;
+}
+
+.sidebar {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  border: 1px solid #3d3d3d;
+  background: #121212;
+  color: #f1f1f1;
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+button {
+  border: none;
+  background: #ff0033;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#uploadStatus {
+  margin: 0.7rem 0 0;
+  min-height: 1.1rem;
+  color: #7bd88f;
+}
+
+.video-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.video-item {
+  border: 1px solid #313131;
+  border-radius: 10px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.video-item:hover {
+  border-color: #ff0033;
+}
+
+.video-item h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.98rem;
+}
+
+.video-item p {
+  margin: 0;
+  font-size: 0.83rem;
+  color: #b5b5b5;
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

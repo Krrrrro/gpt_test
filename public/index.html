@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Clone</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>🎬 Mini YouTube Clone</h1>
+    </header>
+
+    <main class="layout">
+      <section class="player-panel" id="playerPanel">
+        <p class="empty-text">왼쪽 목록에서 영상을 선택하세요.</p>
+      </section>
+
+      <aside class="sidebar">
+        <section class="upload-card">
+          <h2>업로더</h2>
+          <form id="uploadForm">
+            <label>
+              업로더 이름
+              <input name="uploader" required placeholder="예: codex" />
+            </label>
+            <label>
+              제목
+              <input name="title" required placeholder="영상 제목" />
+            </label>
+            <label>
+              설명
+              <textarea name="description" rows="3" placeholder="영상 설명"></textarea>
+            </label>
+            <label>
+              동영상 파일
+              <input type="file" name="videoFile" accept="video/*" required />
+            </label>
+            <button type="submit">업로드</button>
+            <p id="uploadStatus"></p>
+          </form>
+        </section>
+
+        <section class="video-list-card">
+          <h2>추천 영상</h2>
+          <div id="videoList" class="video-list"></div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
