@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Clone</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">▶</span>
+        <strong>YouTube</strong>
+      </div>
+      <form id="searchForm" class="search-wrap" role="search">
+        <input id="searchInput" type="search" placeholder="검색" aria-label="동영상 검색" />
+        <button type="submit">검색</button>
+      </form>
+      <div class="user-chip">K</div>
+    </header>
+
+    <div class="app-shell">
+      <aside class="left-nav">
+        <button class="nav-item active">홈</button>
+        <button class="nav-item">탐색</button>
+        <button class="nav-item">구독</button>
+        <button class="nav-item">보관함</button>
+      </aside>
+
+      <main class="content">
+        <section class="player-column">
+          <article class="player-card" id="playerPanel">
+            <p class="empty-text">재생할 영상을 선택하세요.</p>
+          </article>
+
+          <article class="upload-card">
+            <h2>동영상 업로드</h2>
+            <form id="uploadForm">
+              <label>
+                업로더 이름
+                <input name="uploader" required placeholder="채널명" />
+              </label>
+              <label>
+                제목
+                <input name="title" required placeholder="영상 제목" />
+              </label>
+              <label>
+                설명
+                <textarea name="description" rows="3" placeholder="영상 설명"></textarea>
+              </label>
+              <label>
+                동영상 파일
+                <input type="file" name="videoFile" accept="video/*" required />
+              </label>
+              <button type="submit">업로드</button>
+              <p id="uploadStatus"></p>
+            </form>
+          </article>
+        </section>
+
+        <section class="feed-column">
+          <h2 id="feedTitle">추천 동영상</h2>
+          <div id="videoGrid" class="video-grid"></div>
+        </section>
+
+        <aside class="recommend-column">
+          <h2>다음 동영상</h2>
+          <div id="recommendList" class="recommend-list"></div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
