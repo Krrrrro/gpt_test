@@ -60,11 +60,21 @@ async function saveVideos(videos) {
   await fs.writeFile(VIDEO_DB, JSON.stringify(videos, null, 2), 'utf-8');
 }
 
-app.get('/api/videos', async (_req, res, next) => {
+app.get('/api/videos', async (req, res, next) => {
   try {
     const videos = await readVideos();
     const sorted = videos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    res.json(sorted);
+    const query = (req.query.q || '').toString().trim().toLowerCase();
+
+    if (!query) {
+      return res.json(sorted);
+    }
+
+    const filtered = sorted.filter((video) =>
+      `${video.title} ${video.description || ''} ${video.uploader}`.toLowerCase().includes(query)
+    );
+
+    res.json(filtered);
   } catch (error) {
     next(error);
   }
@@ -113,6 +123,35 @@ app.post('/api/upload', upload.single('videoFile'), async (req, res, next) => {
     await saveVideos(videos);
 
     res.status(201).json(newVideo);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+app.get('/api/videos/:id/recommendations', async (req, res, next) => {
+  try {
+    const videos = await readVideos();
+    const current = videos.find((v) => v.id === req.params.id);
+    if (!current) {
+      return res.status(404).json({ message: '영상을 찾을 수 없습니다.' });
+    }
+
+    const words = new Set(current.title.toLowerCase().split(/\s+/).filter(Boolean));
+    const recs = videos
+      .filter((v) => v.id !== current.id)
+      .map((v) => ({
+        ...v,
+        score: v.title
+          .toLowerCase()
+          .split(/\s+/)
+          .filter((w) => words.has(w)).length,
+      }))
+      .sort((a, b) => b.score - a.score || b.views - a.views)
+      .slice(0, 8)
+      .map(({ score, ...video }) => video);
+
+    res.json(recs);
   } catch (error) {
     next(error);
   }
