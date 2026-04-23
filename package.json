@@ -1,0 +1,16 @@
+{
+  "name": "biz-ict-rnd-board",
+  "version": "1.0.0",
+  "description": "휴비즈 ICT 기업부설연구소 R&D 과제 진행 현황 웹 앱",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node --check src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0"
+  }
+}
